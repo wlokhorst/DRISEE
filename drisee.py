@@ -429,17 +429,17 @@ def main(args):
         # bins_to_seq_count will contain a dictionary of each md5 in filtered set to a count of the number of seqs in that bin
         bins_to_seq_count = {}
         dhdl = open(opts.rep_file, 'rU')
-	try:
-	    for line in dhdl:
-		(bid, sid) = line.split()
+        try:
+            for line in dhdl:
+                (bid, sid) = line.split()
                 if bid in bins:
                     bins_to_rep_ids[bid] = sid
                     if bid in bins_to_seq_count:
                         bins_to_seq_count[bid] += 1
                     else:
                         bins_to_seq_count[bid] = 1
-	finally:
-	    dhdl.close()
+        finally:
+            dhdl.close()
         # generate sequence file for list of sequence ids
         rep_seqs_fasta = os.path.join(TMP_DIR, "rep_seqs.fasta")
         get_sub_fasta(bins_to_rep_ids.values(), index_seq, in_seq, rep_seqs_fasta)
